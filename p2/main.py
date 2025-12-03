@@ -44,15 +44,22 @@ def part1(inp: str) -> str:
     ranges = [(int(r[0]), int(r[1])) for r in ranges]
     invalid_numbers = []
     for r in ranges:
-        for num in range(r[0], r[1] + 1):
-            nums = str(num)
-            midpoint = int(len(nums) / 2)
-            if nums[:midpoint] == nums[midpoint:]:
-                invalid_numbers.append(num)
-
+        range_ = invalid_in_range(r[0], r[1])
+        print(r, range_)
+        invalid_numbers += range_
     return str(sum(invalid_numbers))
 
 
+
+def part2(inp: str) -> str:
+    ranges = [a.split("-") for a in inp.split(",")]
+    ranges = [(int(r[0]), int(r[1])) for r in ranges]
+    invalid_numbers = []
+    for r in ranges:
+        range_ = invalid_in_range(r[0], r[1], odds=True)
+        print(r, range_)
+        invalid_numbers += range_
+    return str(sum(invalid_numbers))
 
 
 if __name__ == "__main__":
